@@ -1,0 +1,55 @@
+<html>
+<head>
+<title>PHP insertion</title>
+<link href="css/index.css" rel="stylesheet">
+</head>
+<body>
+<div class="maindiv">
+<div class="maindiv">
+<!--HTML Form -->
+<div class="form_div">
+<div class="title">
+<h2>Insert Data In Database Using PHP.</h2>
+</div>
+<form action="index.php" method="post" >
+<!-- Method can be set as POST for hiding values in URL-->
+<h2>Form</h2>
+<label>Name:</label>
+<input class="input" name="name" type="text" value="">
+<label>Level:</label>
+<input class="input" name="level1" type="text" value="">
+<input class="submit" name="submit" type="submit" value="Insert">
+</form>
+</div>
+</div>
+</body>
+</html>
+<?php
+$con=mysql_connect("127.0.0.1","root","")or die (mysql_error());
+ $db=mysql_select_db(('hangman',$con()or die (mysql_error());
+if(isset($_POST['submit'])){
+$name=$_POST['user_name'];
+$question=$_POST['question'];
+$level=$_POST['level'];
+$score=$_POST['score'];
+if($name==''){
+echo "<script>alert('enter your name....')</script>"
+}
+if($question==''){
+echo "<script>alert('enter your question....')</script>"
+}
+if($level==''){
+echo "<script>alert('enter your level....')</script>"
+}
+if($score==''){
+echo "<script>alert('enter your score....')</script>"
+}
+
+else{
+$query="insert into display(name,question,level,score)value('$name','$question','$level','$score')";
+if(mysql_query($query)){
+echo "<script> alert('your sucssec fully connected')</script>"
+}
+}
+}
+?>
